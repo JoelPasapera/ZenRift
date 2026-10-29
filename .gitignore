@@ -1,0 +1,21 @@
+# Compilación
+build/
+build-*/
+out/
+cmake-build-*/
+compile_commands.json
+
+# Datos y registros de ejecuciones locales
+data/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Editores y sistema
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

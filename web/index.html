@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>ZenRift</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/zenrift.css">
+  <script type="module" src="/js/main.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#/pulso" aria-label="ZenRift, ir al pulso">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M2 14h5l2-7 3 12 3-9 2 4h5" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>ZenRift</span>
+    </a>
+    <p class="bar-status" id="bar-status" role="status" aria-live="polite">
+      <span class="dot" data-state="connecting"></span><span id="bar-status-text">Conectando…</span>
+    </p>
+    <p class="bar-figures" id="bar-figures"></p>
+  </header>
+
+  <nav class="rail" aria-label="Secciones">
+    <a href="#/pulso" data-route="pulso">Pulso</a>
+    <a href="#/consultas" data-route="consultas">Consultas</a>
+    <a href="#/editor" data-route="editor">Editor ZQL</a>
+    <a href="#/tail" data-route="tail">Eventos en vivo</a>
+    <a href="#/alertas" data-route="alertas">Alertas <span class="badge" id="alert-badge" hidden></span></a>
+  </nav>
+
+  <main id="view" tabindex="-1"></main>
+
+  <div class="toasts" id="toasts" aria-live="assertive"></div>
+
+  <dialog id="token-dialog">
+    <form method="dialog" class="token-form">
+      <h2>Este servidor pide un token</h2>
+      <p>Las rutas de la API están protegidas. Escribe el token configurado en <code>auth_token</code>.</p>
+      <label>Token <input name="token" type="password" autocomplete="current-password" required></label>
+      <div class="actions"><button value="ok" class="primary">Guardar y reintentar</button></div>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript">El panel de ZenRift necesita JavaScript. La API sigue disponible en <code>/v1</code>.</p></noscript>
+</body>
+</html>

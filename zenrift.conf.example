@@ -1,0 +1,46 @@
+# Configuración de ZenRift.
+#
+#   zenrift serve --config zenrift.conf
+#
+# Formato: "clave = valor", una por línea; "#" o ";" empiezan un comentario.
+# Cualquier ajuste se puede pasar también en la línea de comandos como
+# --clave valor (con guiones o guiones bajos), y la línea de comandos manda.
+# Los valores de abajo son los predeterminados.
+
+# --- Red ------------------------------------------------------------------
+host = 127.0.0.1                 # 0.0.0.0 para escuchar en todas las interfaces
+port = 7070
+max_connections = 10000
+max_body = 64MB                  # tamaño máximo de una petición (acota también max_event_size)
+# poller = epoll                 # epoll | poll; automático si se omite
+# cors_origin = https://panel.ejemplo.com
+# auth_token = cambia-esto       # exige "Authorization: Bearer <token>" en /v1/
+
+# --- Almacenamiento -------------------------------------------------------
+data_dir = ./data
+fsync = interval                 # always | interval | never
+fsync_interval = 1s
+segment_size = 64MB              # tamaño al que rota cada segmento del log
+retention_bytes = 1GB            # por partición; 0 = sin límite
+retention = 7d                   # antigüedad máxima; 0s = sin límite
+partitions = 1                   # particiones de los streams que se crean solos
+auto_create_streams = true
+
+# --- Motor ----------------------------------------------------------------
+shards = 0                       # hilos de proceso; 0 = núcleos - 1
+max_event_size = 1MB
+max_future = 1h                  # se rechazan marcas de tiempo más allá de esto
+idle_timeout = 1s                # sin eventos, el tiempo de evento avanza con el reloj
+window = 10s                     # ventana si la consulta no lleva WINDOW
+lateness = 2s                    # LATENESS si la consulta no lo indica
+history = 360                    # resultados finales guardados por consulta
+max_groups = 100000              # grupos por ventana y consulta
+max_rows = 1000                  # filas por resultado si no hay LIMIT
+recovery_horizon = 1h            # historia que se re-procesa al arrancar
+tail_rate = 500                  # eventos/s máximos por tail en vivo
+
+# --- Otros ----------------------------------------------------------------
+log_level = info                 # debug | info | warn | error | off
+# web_dir = ./web                # servir el panel desde disco (para desarrollarlo)
+# demo = true                    # tráfico sintético y consultas de ejemplo
+# demo_rate = 1500
